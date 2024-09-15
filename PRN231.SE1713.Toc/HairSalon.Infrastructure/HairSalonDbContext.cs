@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HairSalon.Infrastructure.Configurations;
+using HairSalon.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace HairSalon.Infrastructure
@@ -26,12 +28,24 @@ namespace HairSalon.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //if (optionsBuilder)
             optionsBuilder.UseSqlServer(GetConnectionString(), sqlOptions => sqlOptions.CommandTimeout(120));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            // Entities configuration
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppointmentConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppointmentFeedbackConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppointmentServiceConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(StylistFeedbackConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(TransactionConfiguration).Assembly);
+
+            // Data seeding
+            modelBuilder.SeedDataForCustomer();
+            modelBuilder.SeedDataForEmployees();
+            modelBuilder.SeedDataForService();
+            modelBuilder.SeedDataForStylistFeedback();
         }
     }
 }

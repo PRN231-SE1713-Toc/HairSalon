@@ -1,4 +1,11 @@
 ﻿using Asp.Versioning;
+using HairSalon.Core.Contracts;
+using HairSalon.Core.Contracts.Repositories;
+using HairSalon.Core.Contracts.Services;
+using HairSalon.Core.Entities;
+using HairSalon.Infrastructure;
+using HairSalon.Infrastructure.Repositories;
+using HairSalon.Service;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -83,6 +90,16 @@ namespace API.Extensions
         /// <returns></returns>
         private static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            // Services, Unit of Work
+            services.AddTransient<ITokenService, TokenService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Repositories
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<ICustomerRepository, CustomerRepository>();  
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();  
+            services.AddScoped<IServiceRepository, ServiceRepository>();  
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();  
 
             return services;
         }
