@@ -20,10 +20,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\HairSalon.Core\HairSalon.Core.csproj" />
-	  <ProjectReference Include="..\HairSalon.Dto\HairSalon.Dto.csproj" />
-	  <ProjectReference Include="..\HairSalon.Infrastructure\HairSalon.Infrastructure.csproj" />
-	  <ProjectReference Include="..\HairSalon.Service\HairSalon.Service.csproj" />
+		<ProjectReference Include="..\HairSalon.Core\HairSalon.Core.csproj" />
+		<ProjectReference Include="..\HairSalon.Dto\HairSalon.Dto.csproj" />
+		<ProjectReference Include="..\HairSalon.Infrastructure\HairSalon.Infrastructure.csproj" />
+		<ProjectReference Include="..\HairSalon.Service\HairSalon.Service.csproj" />
 	</ItemGroup>
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/appsettings.json" />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>
