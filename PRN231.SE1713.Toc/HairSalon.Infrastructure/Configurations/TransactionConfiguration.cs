@@ -15,7 +15,7 @@ namespace HairSalon.Infrastructure.Configurations
 
             builder.HasOne(x => x.Appointment)
                 .WithMany(y => y.Transactions)
-                .HasForeignKey(x => x.Appointment)
+                .HasForeignKey(x => x.AppointmentId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
         }
     }

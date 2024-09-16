@@ -2,10 +2,10 @@
 using HairSalon.Core.Contracts;
 using HairSalon.Core.Contracts.Repositories;
 using HairSalon.Core.Contracts.Services;
-using HairSalon.Core.Entities;
 using HairSalon.Infrastructure;
 using HairSalon.Infrastructure.Repositories;
 using HairSalon.Service;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -68,7 +68,16 @@ namespace API.Extensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddApplicationServices();
             services.AddApiVersioning();
-            services.AddDatabase(configuration);
+
+            // Database connection string
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true, true)
+                .AddEnvironmentVariables()
+                .Build();
+            var connectionString = config.GetConnectionString("DefaultConnection") ?? string.Empty;
+            services.AddDatabase(connectionString);
 
             services.AddCors(opt =>
             {
@@ -130,10 +139,11 @@ namespace API.Extensions
         /// Database configuration
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="configuration"></param>
+        /// <param name="connectionString"></param>
         /// <returns></returns>
-        private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+        private static IServiceCollection AddDatabase(this IServiceCollection services, string connectionString)
         {
+            services.AddDbContext<HairSalonDbContext>(opt => opt.UseSqlServer(connectionString, sqlOptions => sqlOptions.CommandTimeout(120)));
 
             return services;
         }

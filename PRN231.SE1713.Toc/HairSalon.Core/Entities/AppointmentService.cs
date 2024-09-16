@@ -11,7 +11,7 @@ namespace HairSalon.Core.Entities
 
         public int ServiceId { get; set; }
 
-        [Column(TypeName = "decimal(10")]
+        [Column(TypeName = "decimal(10)")]
         public decimal CurrentPrice { get; set; }
 
         public Appointment Appointment { get; set; } = null!;
