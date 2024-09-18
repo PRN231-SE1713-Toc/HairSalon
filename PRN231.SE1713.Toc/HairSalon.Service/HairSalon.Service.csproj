@@ -14,6 +14,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\HairSalon.Core\HairSalon.Core.csproj" />
+		<ProjectReference Include="..\HairSalon.Dto\HairSalon.Dto.csproj" />
 	</ItemGroup>
 
 </Project>

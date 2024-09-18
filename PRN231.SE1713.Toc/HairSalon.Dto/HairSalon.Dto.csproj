@@ -11,8 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Responses\" />
-	  <Folder Include="Requests\" />
+	  <ProjectReference Include="..\HairSalon.Core\HairSalon.Core.csproj" />
 	</ItemGroup>
 
 </Project>
