@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using HairSalon.Core.Entities;
+using HairSalon.Dto.Responses;
 
 namespace HairSalon.Dto
 {
@@ -9,7 +11,11 @@ namespace HairSalon.Dto
         /// </summary>
         public MappingProfileExtension()
         {
-            
+            CreateMap<Customer, LoggedInUserModel>()
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => "CUSTOMER"));
+
+            CreateMap<Employee, LoggedInUserModel>()
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
         }
     }
 }

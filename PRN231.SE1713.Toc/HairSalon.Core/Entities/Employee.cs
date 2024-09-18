@@ -19,7 +19,7 @@ namespace HairSalon.Core.Entities
         public string? PhoneNumber { get; set; }
 
         [StringLength(12)]
-        public string CitizenId { get; set; } = null!;
+        public string? CitizenId { get; set; }
 
         public string? Address { get; set; }
 

@@ -2,6 +2,7 @@
 using HairSalon.Core.Contracts;
 using HairSalon.Core.Contracts.Repositories;
 using HairSalon.Core.Contracts.Services;
+using HairSalon.Dto;
 using HairSalon.Infrastructure;
 using HairSalon.Infrastructure.Repositories;
 using HairSalon.Service;
@@ -65,7 +66,7 @@ namespace API.Extensions
                 opt.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
             });
             // AutoMapper
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(typeof(MappingProfileExtension));
             services.AddApplicationServices();
             services.AddApiVersioning();
 
@@ -101,6 +102,7 @@ namespace API.Extensions
         {
             // Services, Unit of Work
             services.AddTransient<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Repositories
@@ -122,7 +124,7 @@ namespace API.Extensions
         {
             services.AddApiVersioning(opt =>
             {
-                opt.DefaultApiVersion = new Asp.Versioning.ApiVersion(1);
+                opt.DefaultApiVersion = new ApiVersion(1);
                 opt.AssumeDefaultVersionWhenUnspecified = true;
                 opt.ReportApiVersions = true;
                 opt.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(), new HeaderApiVersionReader("X-Api-Version"));

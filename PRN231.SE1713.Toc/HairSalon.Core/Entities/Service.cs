@@ -7,15 +7,15 @@ namespace HairSalon.Core.Entities
     {
         public int Id { get; set; }
 
-        [Column("ServiceName")]
+        [Column("ServiceName", TypeName = "nvarchar")]
         [StringLength(100)]
         public string Name { get; set; } = null!;
 
-        [Column("ServiceDescription")]
-        [StringLength(255)]
+        [Column("ServiceDescription", TypeName = "nvarchar")]
+        [StringLength(300)]
         public string Description { get; set; } = null!;
 
-        [Column("EstimatedDuration")]
+        [Column("EstimatedDuration", TypeName = "nvarchar(100)")]
         public string? Duration { get; set; }
 
         [Column(TypeName = "decimal(10)")]

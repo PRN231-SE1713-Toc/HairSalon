@@ -19,10 +19,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\v1\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\HairSalon.Core\HairSalon.Core.csproj" />
 		<ProjectReference Include="..\HairSalon.Dto\HairSalon.Dto.csproj" />
 		<ProjectReference Include="..\HairSalon.Infrastructure\HairSalon.Infrastructure.csproj" />

@@ -14,7 +14,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(opt =>
     {
         opt.SwaggerEndpoint("/swagger/v1/swagger.json", "HairSalon.API v1");
-        opt.RoutePrefix = "/";
     });
 }
 
@@ -22,6 +21,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors("HairSalon");
 
 app.MapControllers();
 

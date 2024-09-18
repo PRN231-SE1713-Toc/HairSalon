@@ -14,9 +14,7 @@ namespace HairSalon.Infrastructure.Repositories
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
         }
-
-        public void Add(T entity, bool saveChange)
-            => _dbContext.Add(entity);
+        public void Add(T entity) => _dbContext.Add(entity);
 
         public void AddRange(IEnumerable<T> entities)
             => _dbContext.AddRange(entities);
