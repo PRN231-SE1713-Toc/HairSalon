@@ -23,6 +23,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseCors("HairSalon");
+
 app.MapControllers();
 
 app.Run();
