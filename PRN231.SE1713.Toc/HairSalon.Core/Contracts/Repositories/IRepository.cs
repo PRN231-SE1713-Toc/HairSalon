@@ -10,7 +10,7 @@ namespace HairSalon.Core.Contracts.Repositories
 
         Task<T?> FindAsync(params object[] keyValues);
 
-        void Add(T entity, bool saveChange ); 
+        void Add(T entity); 
 
         void AddRange(IEnumerable<T> entities);
 
