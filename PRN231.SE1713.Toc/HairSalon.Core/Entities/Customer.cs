@@ -25,14 +25,7 @@ namespace HairSalon.Core.Entities
         public string Password { get; set; } = null!;
 
         public DateTime? DateOfBirth { get; set; }
-
-        [Column(TypeName = "varchar(max)")]        
-        public string? RefreshToken { get; set; }
-
-        public DateTime? RefreshTokenExpiryTime { get; set; }
-
-        public ICollection<AppointmentFeedback> AppointmentFeedback { get; set; } = new List<AppointmentFeedback>();
-        
+                        
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
         
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();

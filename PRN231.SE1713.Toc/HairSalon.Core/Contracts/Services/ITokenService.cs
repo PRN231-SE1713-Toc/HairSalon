@@ -15,13 +15,13 @@ namespace HairSalon.Core.Contracts.Services
         /// Generates a refresh token.
         /// </summary>
         /// <returns>The generated refresh token.</returns>
-        string GenerateRefreshToken();
+        string GenerateRefreshToken();  // METHOD IS NOT USED IN THIS CONTEXT
 
         /// <summary>
         /// Retrieves a ClaimsPrincipal object from an expired token.
         /// </summary>
         /// <param name="token">The expired token.</param>
         /// <returns>The ClaimsPrincipal object representing the identity of the user.</returns>
-        ClaimsPrincipal GetPrincipalFromAccessToken(string token);
+        ClaimsPrincipal GetPrincipalFromAccessToken(string token);  // METHOD IS NOT USED IN THIS CONTEXT
     }
 }

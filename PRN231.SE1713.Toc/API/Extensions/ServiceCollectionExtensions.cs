@@ -74,18 +74,16 @@ namespace API.Extensions
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true, true)
-                .AddEnvironmentVariables()
+                //.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true, true)
                 .Build();
             var connectionString = config.GetConnectionString("DefaultConnection") ?? string.Empty;
             services.AddDatabase(connectionString);
 
             services.AddCors(opt =>
             {
-                // TODO: Change the URL in WithOrigins to the client URL
                 opt.AddPolicy("HairSalon", builder =>
                 {
-                    builder.WithOrigins(string.Empty)
+                    builder.WithOrigins("https://localhost:7078")   // HTTPS port of HairSalon.Web
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });

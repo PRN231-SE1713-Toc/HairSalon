@@ -37,8 +37,8 @@ namespace HairSalon.Service
                 var customer = await GetCustomer(customerId);
                 if (customer is not null)
                 {
-                    customer.RefreshToken = refreshToken;
-                    customer.RefreshTokenExpiryTime = date;
+                    //customer.RefreshToken = refreshToken;
+                    //customer.RefreshTokenExpiryTime = date;
                     _customerRepository.Update(customer);
                     await _unitOfWork.SaveAsync();
                 }

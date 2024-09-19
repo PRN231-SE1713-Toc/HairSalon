@@ -61,35 +61,6 @@ namespace HairSalon.Infrastructure.Migrations
                     b.ToTable("Appointment");
                 });
 
-            modelBuilder.Entity("HairSalon.Core.Entities.AppointmentFeedback", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AppointmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FeedbackDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<short>("Rating")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppointmentId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("AppointmentFeedback");
-                });
-
             modelBuilder.Entity("HairSalon.Core.Entities.AppointmentService", b =>
                 {
                     b.Property<int>("Id")
@@ -152,12 +123,6 @@ namespace HairSalon.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<DateTime?>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -249,12 +214,6 @@ namespace HairSalon.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -360,6 +319,34 @@ namespace HairSalon.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("HairSalon.Core.Entities.EmployeeSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("EmpScheduleId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("WorkingDate")
+                        .HasColumnType("date");
+
+                    b.Property<TimeOnly>("WorkingEndTime")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly>("WorkingStartTime")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeeSchedule");
+                });
+
             modelBuilder.Entity("HairSalon.Core.Entities.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -409,6 +396,9 @@ namespace HairSalon.Infrastructure.Migrations
 
                     b.Property<DateTime>("FeedbackDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<short>("Rating")
+                        .HasColumnType("smallint");
 
                     b.Property<int>("StylistId")
                         .HasColumnType("int");
@@ -477,25 +467,6 @@ namespace HairSalon.Infrastructure.Migrations
                     b.Navigation("Stylist");
                 });
 
-            modelBuilder.Entity("HairSalon.Core.Entities.AppointmentFeedback", b =>
-                {
-                    b.HasOne("HairSalon.Core.Entities.Appointment", "Appointment")
-                        .WithMany("AppointmentFeedback")
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
-                        .IsRequired();
-
-                    b.HasOne("HairSalon.Core.Entities.Customer", "Customer")
-                        .WithMany("AppointmentFeedback")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
-                        .IsRequired();
-
-                    b.Navigation("Appointment");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("HairSalon.Core.Entities.AppointmentService", b =>
                 {
                     b.HasOne("HairSalon.Core.Entities.Appointment", "Appointment")
@@ -513,6 +484,17 @@ namespace HairSalon.Infrastructure.Migrations
                     b.Navigation("Appointment");
 
                     b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("HairSalon.Core.Entities.EmployeeSchedule", b =>
+                {
+                    b.HasOne("HairSalon.Core.Entities.Employee", "Employee")
+                        .WithMany("EmployeeSchedules")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("HairSalon.Core.Entities.StylistFeedback", b =>
@@ -555,8 +537,6 @@ namespace HairSalon.Infrastructure.Migrations
 
             modelBuilder.Entity("HairSalon.Core.Entities.Appointment", b =>
                 {
-                    b.Navigation("AppointmentFeedback");
-
                     b.Navigation("AppointmentServices");
 
                     b.Navigation("Transactions");
@@ -564,8 +544,6 @@ namespace HairSalon.Infrastructure.Migrations
 
             modelBuilder.Entity("HairSalon.Core.Entities.Customer", b =>
                 {
-                    b.Navigation("AppointmentFeedback");
-
                     b.Navigation("Appointments");
 
                     b.Navigation("StylistFeedback");
@@ -576,6 +554,8 @@ namespace HairSalon.Infrastructure.Migrations
             modelBuilder.Entity("HairSalon.Core.Entities.Employee", b =>
                 {
                     b.Navigation("Appointments");
+
+                    b.Navigation("EmployeeSchedules");
 
                     b.Navigation("StylistFeedback");
                 });

@@ -24,6 +24,7 @@ namespace HairSalon.Api.Controllers.v1
             _userService = userService;
             _tokenService = tokenService;
         }
+        
         /// <summary>
         /// Authenticate for customer
         /// </summary>
@@ -49,10 +50,6 @@ namespace HairSalon.Api.Controllers.v1
                 new Claim(ClaimTypes.Email, customer.Email),
             };
             var accessToken = _tokenService.GenerateAccessToken(claims);
-            var refreshToken = _tokenService.GenerateRefreshToken();
-            var rfTokenExpiryTime = DateTime.UtcNow.AddDays(7);
-
-            await _userService.UpdateRefreshTokenCustomer(customer.Id, refreshToken, rfTokenExpiryTime);
             var response = _mapper.Map<LoggedInUserModel>(customer);
             return Ok(new ApiResponseModel<UserResponseModel>()
             {
@@ -62,7 +59,45 @@ namespace HairSalon.Api.Controllers.v1
                 {
                     User = response,
                     AccessToken = accessToken,
-                    RefreshToken = refreshToken
+                }
+            });
+        }
+
+        /// <summary>
+        /// Authenticate for employee in HairSalon
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [HttpPost("login-employee")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ApiResponseModel<string>))]
+        public async Task<ActionResult<ApiResponseModel<UserResponseModel>>> LoginForEmployee([FromBody] LoginRequestModel requestModel)
+        {
+            var customer = await _userService.AuthenticateForEmployee(requestModel.Email, requestModel.Password);
+            if (customer is null) return NotFound(new ApiResponseModel<string>()
+            {
+                StatusCode = System.Net.HttpStatusCode.NotFound,
+                Message = "User not found"
+            });
+            // Create claims for access token
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.PrimarySid, customer.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, customer.Name),
+                new Claim(ClaimTypes.Email, customer.Email),
+            };
+            var accessToken = _tokenService.GenerateAccessToken(claims);
+            var response = _mapper.Map<LoggedInUserModel>(customer);
+            return Ok(new ApiResponseModel<UserResponseModel>()
+            {
+                StatusCode = System.Net.HttpStatusCode.OK,
+                Message = "Login successfully",
+                Data = new UserResponseModel
+                {
+                    User = response,
+                    AccessToken = accessToken,
                 }
             });
         }

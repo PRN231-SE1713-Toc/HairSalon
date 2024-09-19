@@ -22,7 +22,7 @@ namespace HairSalon.Service
                 issuer: jwtSettings["Issuer"],
                 audience: jwtSettings["Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(15),
+                expires: DateTime.Now.AddMinutes(50),
                 signingCredentials: signInCredentials
             );
             var token = new JwtSecurityTokenHandler().WriteToken(jwtOptions) ?? string.Empty;
