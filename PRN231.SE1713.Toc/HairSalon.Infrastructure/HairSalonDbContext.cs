@@ -20,7 +20,7 @@ namespace HairSalon.Infrastructure
             IConfiguration configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true, true)
+                //.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true, true)
                 .Build();
 
             return configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
@@ -36,10 +36,10 @@ namespace HairSalon.Infrastructure
         {
             // Entities configuration
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppointmentConfiguration).Assembly);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppointmentFeedbackConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppointmentServiceConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(StylistFeedbackConfiguration).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(TransactionConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EmployeeScheduleConfiguration).Assembly);
 
             // Data seeding
             modelBuilder.SeedDataForCustomer();

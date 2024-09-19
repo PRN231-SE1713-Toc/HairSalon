@@ -25,14 +25,12 @@ namespace HairSalon.Core.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public string? RefreshToken { get; set; }
-
-        public DateTime? RefreshTokenExpiryTime { get; set; }
-
         public EmployeeRole Role { get; set; }
 
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
         public ICollection<StylistFeedback> StylistFeedback { get; set; } = new List<StylistFeedback>();
+
+        public ICollection<EmployeeSchedule> EmployeeSchedules { get; set; } = new List<EmployeeSchedule>();
     }
 }

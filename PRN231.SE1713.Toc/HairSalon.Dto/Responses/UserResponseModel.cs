@@ -8,8 +8,6 @@
         public LoggedInUserModel? User { get; set; }
 
         public string AccessToken { get; set; } = null!;
-
-        public string RefreshToken { get; set; } = null!;
     }
 
     public class LoggedInUserModel

@@ -13,6 +13,11 @@ namespace HairSalon.Core.Entities
         [StringLength(500)]
         public string? Comment { get; set; }
 
+        /// <summary>
+        /// Stylist rating from 1 to 5
+        /// </summary>
+        public short Rating { get; set; }
+
         public DateTime FeedbackDate { get; set; }
 
         public Employee Stylist { get; set; } = null!;

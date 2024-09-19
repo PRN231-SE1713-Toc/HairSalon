@@ -7,17 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{997481D5-0A3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.Api", "API\HairSalon.Api.csproj", "{42166BA1-B1C2-47F7-B002-FE7D10B8E44E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Core", "HairSalon.Core\HairSalon.Core.csproj", "{88F8EC83-4ABC-46F0-BC72-477BBDADF930}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.Core", "HairSalon.Core\HairSalon.Core.csproj", "{88F8EC83-4ABC-46F0-BC72-477BBDADF930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Dto", "HairSalon.Dto\HairSalon.Dto.csproj", "{57ABDE8E-30A9-4FBE-B21D-0286A47A8253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.Dto", "HairSalon.Dto\HairSalon.Dto.csproj", "{57ABDE8E-30A9-4FBE-B21D-0286A47A8253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Infrastructure", "HairSalon.Infrastructure\HairSalon.Infrastructure.csproj", "{59764C05-6EFB-48B5-984C-92665BBD842A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.Infrastructure", "HairSalon.Infrastructure\HairSalon.Infrastructure.csproj", "{59764C05-6EFB-48B5-984C-92665BBD842A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Service", "HairSalon.Service\HairSalon.Service.csproj", "{43A66136-8174-4E40-957B-E56FCD2F41CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.Service", "HairSalon.Service\HairSalon.Service.csproj", "{43A66136-8174-4E40-957B-E56FCD2F41CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FE86B293-1C6B-4A30-A8B0-366E6B82B3A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{7D8A19EC-9BC9-434E-899C-F73D7474EE1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{7D8A19EC-9BC9-434E-899C-F73D7474EE1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Web", "HairSalon.Web\HairSalon.Web.csproj", "{888B66B0-65DA-4C64-8901-7CB649CB7883}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{7D8A19EC-9BC9-434E-899C-F73D7474EE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D8A19EC-9BC9-434E-899C-F73D7474EE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D8A19EC-9BC9-434E-899C-F73D7474EE1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888B66B0-65DA-4C64-8901-7CB649CB7883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888B66B0-65DA-4C64-8901-7CB649CB7883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888B66B0-65DA-4C64-8901-7CB649CB7883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888B66B0-65DA-4C64-8901-7CB649CB7883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{59764C05-6EFB-48B5-984C-92665BBD842A} = {997481D5-0A38-4F0C-BCDE-639989FB07F8}
 		{43A66136-8174-4E40-957B-E56FCD2F41CD} = {997481D5-0A38-4F0C-BCDE-639989FB07F8}
 		{7D8A19EC-9BC9-434E-899C-F73D7474EE1B} = {FE86B293-1C6B-4A30-A8B0-366E6B82B3A3}
+		{888B66B0-65DA-4C64-8901-7CB649CB7883} = {997481D5-0A38-4F0C-BCDE-639989FB07F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3C0B124-A8A3-423A-8DFA-9CA4B3898FD7}

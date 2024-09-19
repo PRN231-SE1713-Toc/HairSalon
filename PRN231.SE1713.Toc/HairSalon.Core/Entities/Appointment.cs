@@ -25,9 +25,7 @@ namespace HairSalon.Core.Entities
         public ICollection<AppointmentService> AppointmentServices { get; set; } = new List<AppointmentService>();
 
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
-
-        public ICollection<AppointmentFeedback> AppointmentFeedback { get; set; } = new List<AppointmentFeedback>();
-
+        
         public Customer Customer { get; set; } = null!;
 
         public Employee Stylist { get; set; } = null!;
