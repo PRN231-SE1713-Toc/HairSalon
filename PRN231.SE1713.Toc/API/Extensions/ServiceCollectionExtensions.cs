@@ -104,6 +104,7 @@ namespace API.Extensions
             services.AddTransient<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IHairServce, HairService>();
 
             // Repositories
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
