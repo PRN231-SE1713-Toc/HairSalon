@@ -17,16 +17,14 @@ namespace HairSalon.Infrastructure
 
             private string GetConnectionString()
             {
-            //IConfiguration configuration = new ConfigurationBuilder()
-            //    .SetBasePath(Directory.GetCurrentDirectory())
-            //    .AddJsonFile("appsettings.json", false, true)
-            //    .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true, true)
-            //    .Build();
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true, true)
+                .Build();
 
-            //return configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
-
-            return "Server=(local);Database=HairSalon;User Id=sa;Password=12345;TrustServerCertificate=True;";
-            }
+            return configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
