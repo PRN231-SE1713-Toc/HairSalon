@@ -16,6 +16,8 @@ namespace HairSalon.Dto
 
             CreateMap<Employee, LoggedInUserModel>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
+
+            CreateMap<EmployeeSchedule, EmployeeScheduleDto>().ReverseMap();
         }
     }
 }

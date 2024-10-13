@@ -11,19 +11,22 @@ namespace HairSalon.Infrastructure
         private readonly ICustomerRepository _customerRepository;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IServiceRepository _serviceRepository;
+        private readonly IEmployeeScheduleRepository _employeeScheduleRepository;
 
         public UnitOfWork(
             HairSalonDbContext dbContext,
             IAppointmentRepository appointmentRepository,
             ICustomerRepository customerRepository,
             IEmployeeRepository employeeRepository,
-            IServiceRepository serviceRepository)
+            IServiceRepository serviceRepository,
+            IEmployeeScheduleRepository employeeScheduleRepository)
         {
             _dbContext = dbContext;
             _appointmentRepository = appointmentRepository;
             _customerRepository = customerRepository;
             _employeeRepository = employeeRepository;
             _serviceRepository = serviceRepository;
+            _employeeScheduleRepository = employeeScheduleRepository;
         }
 
         public IAppointmentRepository AppointmentRepository => _appointmentRepository;
@@ -33,6 +36,7 @@ namespace HairSalon.Infrastructure
         public IEmployeeRepository EmployeeRepository => _employeeRepository;
 
         public IServiceRepository ServiceRepository => _serviceRepository;
+        public IEmployeeScheduleRepository EmployeeScheduleRepository => _employeeScheduleRepository;
 
         public void Dispose()
         {
