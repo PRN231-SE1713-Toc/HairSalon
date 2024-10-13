@@ -101,6 +101,7 @@ namespace API.Extensions
             // Services, Unit of Work
             services.AddTransient<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Repositories
