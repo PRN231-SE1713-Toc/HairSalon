@@ -18,6 +18,7 @@ namespace HairSalon.Dto
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.ToString()));
 
             CreateMap<Service, HairServiceDto>().ReverseMap();
+            CreateMap<Customer, CustomerModel>().ReverseMap();
         }
     }
 }
