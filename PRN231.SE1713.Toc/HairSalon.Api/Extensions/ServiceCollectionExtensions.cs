@@ -102,6 +102,7 @@ namespace API.Extensions
             services.AddTransient<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IEmployeeScheduleService, EmployeeScheduleService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Repositories
@@ -109,7 +110,8 @@ namespace API.Extensions
             services.AddScoped<ICustomerRepository, CustomerRepository>();  
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();  
             services.AddScoped<IServiceRepository, ServiceRepository>();  
-            services.AddScoped<IAppointmentRepository, AppointmentRepository>();  
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IEmployeeScheduleRepository, EmployeeScheduleRepository>();
 
             return services;
         }

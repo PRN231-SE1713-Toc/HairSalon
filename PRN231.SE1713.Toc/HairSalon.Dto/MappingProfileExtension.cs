@@ -19,6 +19,8 @@ namespace HairSalon.Dto
 
             CreateMap<Service, HairServiceDto>().ReverseMap();
             CreateMap<Customer, CustomerModel>().ReverseMap();
+
+            CreateMap<EmployeeSchedule, EmployeeScheduleDto>().ReverseMap();
         }
     }
 }
